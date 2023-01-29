@@ -94,7 +94,7 @@ def show_text_and_image(text : str, img_name : str):
     text = "\n".join(lines)
     
     # Show the text on the left and the image on the right
-    _, ax = plt.subplots(1, 2, figsize=(30, 10))
+    fig, ax = plt.subplots(1, 2, figsize=(30, 10))
     # Show the text on the left
     ax[0].text(0, 0, text, fontsize=20)
     ax[0].axis('off')
@@ -102,4 +102,5 @@ def show_text_and_image(text : str, img_name : str):
     img = mpimg.imread(img_name)
     ax[1].imshow(img)
     ax[1].axis('off')
+
     plt.show()
