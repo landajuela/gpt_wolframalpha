@@ -81,7 +81,7 @@ def wolframAlpha_report(report_json : dict) -> str:
     return {"report": report, "imgs_files": imgs_files}
     
     
-def show_text_and_image(text : str, img_name : str):
+def show_text_and_image(text : str, imgs : list):
     """ Show the text and the image
     Args:
         text (str): The text to show
@@ -93,14 +93,23 @@ def show_text_and_image(text : str, img_name : str):
     # Inset a new line every 80 characters
     text = "\n".join(lines)
     
-    # Show the text on the left and the image on the right
-    fig, ax = plt.subplots(1, 2, figsize=(30, 10))
-    # Show the text on the left
-    ax[0].text(0, 0, text, fontsize=20)
-    ax[0].axis('off')
-    # Show the image on the right
-    img = mpimg.imread(img_name)
-    ax[1].imshow(img)
-    ax[1].axis('off')
+    if imgs:
+        # There are images
+        # Show the text on the left and the image on the right
+        _, ax = plt.subplots(1, 2, figsize=(30, 10))
+        # Show the text on the left
+        ax[0].text(0, 0, text, fontsize=20)
+        ax[0].axis('off')
 
+        # Show the image on the right
+        img = mpimg.imread(imgs[0])
+        ax[1].imshow(img)
+        ax[1].axis('off')
+    else:
+        # There are no images
+        # Show the text
+        _, ax = plt.subplots(1, 1, figsize=(10, 10))
+        ax.text(0, 0, text, fontsize=20)
+        ax.axis('off')
+        
     plt.show()
