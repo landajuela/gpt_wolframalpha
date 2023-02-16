@@ -47,7 +47,7 @@ def wolframAlpha_report(report_json : dict) -> str:
                     if len(data["datasources"]) > 1:
                         report += ", ".join(data["datasources"]["datasource"]) + " "
                     else:
-                        report += data["datasources"]["datasource"] + " "
+                        report += str(data["datasources"]["datasource"]) + " "
                 # If microsources is in the subpod
                 if "microsources" in data:
                     if len(data["microsources"]) > 1:
